@@ -5,9 +5,9 @@ class Locations {
     this.api = api;
     this.countries = null;
     this.cities = null;
-    this.ShortCitiesList = {};
+    this.shortCities = {};
     this.lastSearch = {};
-    this.airlines ={};
+    this.airlines = {};
   }
   async init() {
     const response = await Promise.all([
@@ -19,21 +19,34 @@ class Locations {
     const [countries, cities, airlines] = response;
     this.countries = this.serializeCountries(countries);
     this.cities = this.serializeCities(cities);
-    this.ShortCitiesList = this.createShortCitiesList(this.cities);
+    this.shortCities = this.createShortCities(this.cities);
     this.airlines = this.serializeAirlines(airlines);
-    console.log(this.airlines);
+
     return response;
   }
 
   getCityCodeByKey(key) {
-    return this.cities[key].code;
+    const city = Object.values(this.cities).find(
+      item => item.full_name === key
+    );
+    return city.code;
   }
 
-  createShortCitiesList(cities) {
-    // { 'City, Country': null}
-    // Object.entries => [key, value]
-    return Object.entries(cities).reduce((acc, [key]) => {
-      acc[key] = null;
+  getCityNameByCode(code) {
+    return this.cities[code].name;
+  }
+
+  getAirlineNameByCode(code) {
+    return this.airlines[code] ? this.airlines[code].name : "";
+  }
+
+  getAirlineLogoByCode(code) {
+    return this.airlines[code] ? this.airlines[code].logo : "";
+  }
+
+  createShortCities(cities) {
+    return Object.entries(cities).reduce((acc, [, city]) => {
+      acc[city.full_name] = null;
       return acc;
     }, {});
   }
@@ -44,11 +57,10 @@ class Locations {
       item.name = item.name || item.name_translations.en;
       acc[item.code] = item;
       return acc;
-    }, {})
+    }, {});
   }
 
   serializeCountries(countries) {
-    // { 'Country code': {...} }
     return countries.reduce((acc, country) => {
       acc[country.code] = country;
       return acc;
@@ -56,24 +68,23 @@ class Locations {
   }
 
   serializeCities(cities) {
-    // { 'City name, Country name': {...} }
     return cities.reduce((acc, city) => {
-      const country_name = this.getCountryNameByCode(city.country_code);
-      const city_name = city.name || city.name_translations.en;
-      const key = `${city_name},${country_name}`;
-      acc[key] = city;
+      const country_name = this.countries[city.country_code].name;
+      city.name = city.name || city.name_translations.en;
+      const full_name = `${city.name}, ${country_name}`;
+      acc[city.code] = {
+        ...city,
+        country_name,
+        full_name
+      };
       return acc;
     }, {});
   }
 
-  getCountryNameByCode(code) {
-    // { 'Country code': {...} }
-    return this.countries[code].name;
-  }
-
   async fetchTickets(params) {
     const response = await this.api.prices(params);
-    console.log(response);
+    this.lastSearch = response.data;
+    // серіалізувати пошук так, щоб усередині були назва міста і країни
   }
 }
 

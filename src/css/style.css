@@ -10,10 +10,6 @@
   justify-items: center;
 }
 
-.justify-items-between {
-  justify-content: space-between;
-}
-
 .ml-auto {
   margin-left: auto;
 }
