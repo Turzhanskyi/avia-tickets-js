@@ -9,7 +9,7 @@ export function getSelectInstance(elem) {
   return M.FormSelect.getInstance(elem);
 }
 
-// Init autocomplete
+// Init Autocomplete
 const autocomplete = document.querySelectorAll(".autocomplete");
 M.Autocomplete.init(autocomplete, {
   data: {
@@ -20,15 +20,16 @@ M.Autocomplete.init(autocomplete, {
 });
 
 export function getAutocompleteInstance(elem) {
-  return M.FormSelect.getInstance(elem);
+  return M.Autocomplete.getInstance(elem);
 }
 
 // Init datepickers
 const datepickers = document.querySelectorAll(".datepicker");
 M.Datepicker.init(datepickers, {
-  showClearBtn: true
+  showClearBtn: true,
+  format: "yyyy-mm"
 });
 
-export function getDataPickerInstance(elem) {
+export function getDatePickerInstance(elem) {
   return M.Datepicker.getInstance(elem);
 }

@@ -5,7 +5,7 @@ class Locations {
     this.api = api;
     this.countries = null;
     this.cities = null;
-    this.shortCitiesList = nul;
+    this.ShortCitiesList = null;
   }
   async init() {
     const response = await Promise.all([
@@ -16,9 +16,13 @@ class Locations {
     const [countries, cities] = response;
     this.countries = this.serializeCountries(countries);
     this.cities = this.serializeCities(cities);
-    this.shortCitiesList = this.createShortCitiesList(this.cities);
+    this.ShortCitiesList = this.createShortCitiesList(this.cities);
 
     return response;
+  }
+
+  getCityCodeByKey(key) {
+    return this.cities[key].code;
   }
 
   createShortCitiesList(cities) {
@@ -31,7 +35,7 @@ class Locations {
   }
 
   serializeCountries(countries) {
-    // { 'Country code': {...}}
+    // { 'Country code': {...} }
     return countries.reduce((acc, country) => {
       acc[country.code] = country;
       return acc;
@@ -54,8 +58,9 @@ class Locations {
     return this.countries[code].name;
   }
 
-  getCitiesByCountryCode(code) {
-    return this.cities.filter(city => city.country_code === code);
+  async fetchTickets(params) {
+    const response = await this.api.prices(params);
+    console.log(response);
   }
 }
 
