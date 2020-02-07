@@ -2,6 +2,7 @@ import "../css/style.css";
 import "./plugins";
 import locations from "./store/locations";
 import formUI from "./views/form";
+import ticketUI from "./views/tickets";
 import currencyUI from "./views/currency";
 
 document.addEventListener("DOMContentLoaded", e => {
@@ -36,5 +37,6 @@ document.addEventListener("DOMContentLoaded", e => {
     });
 
     console.log(locations.lastSearch);
+    ticketUI.renderTickets(locations.lastSearch);
   }
 });

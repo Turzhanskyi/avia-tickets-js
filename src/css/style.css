@@ -49,3 +49,11 @@
 .header .brand-logo {
   font-size: 1.5rem;
 }
+
+.tickets-empty-res-msg {
+  padding: 10px 15px;
+  text-align: center;
+  background: whitesmoke;
+  font-weight: bold;
+  font-size: 18px;
+}
