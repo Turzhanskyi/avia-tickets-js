@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", e => {
       currency
     });
 
-    console.log(locations.lastSearch);
     ticketUI.renderTickets(locations.lastSearch);
   }
 });
