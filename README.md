@@ -10,14 +10,15 @@
 
 Udemy URL: https://www.udemy.com/course/modern-javascript-from-beginning/learn/lecture/15806204#overview
 
-#
+Your site is ready to be published at: https://turzhanskyi.github.io/avia-tickets/dist/index.html
 
-### Для роботи з проектом необхідно:
+
+### Для роботи локально з проектом необхідно:
 
 #### 1. Встановити пакети
 
 npm i
 
-#### 2. Запусти webpack-dev-server
+#### 2. Запустити webpack-dev-server
 
 npm run dev
