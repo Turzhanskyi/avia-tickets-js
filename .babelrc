@@ -1,8 +1,10 @@
 {
   "presets": [
-    "@babel/preset-evn",
-    {
-      "targets": { "node": "10" }
-    }
+    [
+      "@babel/preset-evn",
+      {
+        "targets": { "node": "12" }
+      }
+    ]
   ]
 }
