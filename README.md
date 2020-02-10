@@ -8,12 +8,11 @@
 
 ### Автор: Denys Mescheryakov
 
-Udemy URL: https://www.udemy.com/course/modern-javascript-from-beginning/learn/lecture/15806204#overview
+Udemy URL: <https://www.udemy.com/course/modern-javascript-from-beginning/learn/lecture/15806204#overview>
 
-Hosting URL: https://avia-tickets-app-6f191.firebaseapp.com
+Hosting URL: <https://avia-tickets-app-6f191.firebaseapp.com>
 
-Your site is ready to be published at: https://turzhanskyi.github.io/avia-tickets/dist/index.html
-
+Your site is ready to be published at: <https://turzhanskyi.github.io/avia-tickets/dist/index.html>
 
 ### Для роботи локально з проектом необхідно:
 
